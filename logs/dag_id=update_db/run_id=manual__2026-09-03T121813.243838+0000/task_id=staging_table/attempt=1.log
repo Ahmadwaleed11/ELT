@@ -1,0 +1,52 @@
+[2026-09-03T12:18:20.069+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-03T12:18:20.189+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: update_db.staging_table manual__2026-09-03T12:18:13.243838+00:00 [queued]>
+[2026-09-03T12:18:20.237+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: update_db.staging_table manual__2026-09-03T12:18:13.243838+00:00 [queued]>
+[2026-09-03T12:18:20.245+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-09-03T12:18:20.355+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): staging_table> on 2026-09-03 12:18:13.243838+00:00
+[2026-09-03T12:18:20.417+0000] {standard_task_runner.py:63} INFO - Started process 252 to run task
+[2026-09-03T12:18:20.433+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'update_db', 'staging_table', 'manual__2026-09-03T12:18:13.243838+00:00', '--job-id', '32', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpm71g_1fl']
+[2026-09-03T12:18:20.447+0000] {standard_task_runner.py:91} INFO - Job 32: Subtask staging_table
+[2026-09-03T12:18:20.831+0000] {task_command.py:426} INFO - Running <TaskInstance: update_db.staging_table manual__2026-09-03T12:18:13.243838+00:00 [running]> on host 98db97c21098
+[2026-09-03T12:18:21.013+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='update_db' AIRFLOW_CTX_TASK_ID='staging_table' AIRFLOW_CTX_EXECUTION_DATE='2026-09-03T12:18:13.243838+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-09-03T12:18:13.243838+00:00'
+[2026-09-03T12:18:21.015+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-03T12:18:21.370+0000] {base.py:84} INFO - Using connection ID 'postgres_db_yt_elt' for task execution.
+[2026-09-03T12:18:21.556+0000] {data_loading.py:10} INFO - processing file :yt_data2026-09-03
+[2026-09-03T12:18:21.659+0000] {base.py:84} INFO - Using connection ID 'postgres_db_yt_elt' for task execution.
+[2026-09-03T12:18:21.748+0000] {dwh.py:45} ERROR - error while update ofstaging table:
+[2026-09-03T12:18:21.756+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-03T12:18:21.784+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/datawarehouse/dwh.py", line 46, in staging_table
+    raise e
+  File "/opt/airflow/dags/datawarehouse/dwh.py", line 22, in staging_table
+    create_schema(schema)
+  File "/opt/airflow/dags/datawarehouse/data_utils.py", line 19, in create_schema
+    cur.execute(schema_sql)
+  File "/home/airflow/.local/lib/python3.10/site-packages/psycopg2/extras.py", line 236, in execute
+    return super().execute(query, vars)
+psycopg2.errors.SyntaxError: syntax error at or near "EXIST"
+LINE 1: CREATE SCHEMA IF NOT EXIST staging
+                             ^
+
+[2026-09-03T12:18:21.946+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=update_db, task_id=staging_table, run_id=manual__2026-09-03T12:18:13.243838+00:00, execution_date=20260903T121813, start_date=20260903T121820, end_date=20260903T121821
+[2026-09-03T12:18:22.170+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 32 for task staging_table (syntax error at or near "EXIST"
+LINE 1: CREATE SCHEMA IF NOT EXIST staging
+                             ^
+; 252)
+[2026-09-03T12:18:22.258+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-09-03T12:18:22.369+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-09-03T12:18:22.382+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

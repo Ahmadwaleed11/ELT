@@ -8,6 +8,3 @@ ENV AIRFLOW_HOME=/opt/airflow
 COPY requirements.txt /requirements.txt
 
 RUN pip install --no-cache-dir -r /requirements.txt
-
-COPY video.py /opt/airflow/video.py
-COPY data /opt/airflow/data
