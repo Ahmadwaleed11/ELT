@@ -1,0 +1,1 @@
+[2026-09-09T09:57:11.475+0000] {scheduler_job_runner.py:843} ERROR - Executor reports task instance <TaskInstance: produce_json.extract_video_data manual__2026-09-09T09:49:43.904912+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

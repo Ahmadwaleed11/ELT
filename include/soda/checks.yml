@@ -1,0 +1,15 @@
+checks for yt_api:
+  - missing_count("Video_ID") = 0
+  - duplicate_count("Video_ID") = 0
+
+  - likes_count_greater_than_vid_views = 0:
+      name: check for like_count greater than vid_views
+      likes_count_greater_than_vid_views query: |
+        SELECT COUNT(*) FROM yt_api
+        WHERE "likes_Count" > "Video_Views"
+
+  - comments_count_greater_than_vid_views = 0:
+      name: check for Comments_count greater than vid_views
+      comments_count_greater_than_vid_views query: |
+        SELECT COUNT(*) FROM yt_api
+        WHERE "Comments_Count" > "Video_Views"

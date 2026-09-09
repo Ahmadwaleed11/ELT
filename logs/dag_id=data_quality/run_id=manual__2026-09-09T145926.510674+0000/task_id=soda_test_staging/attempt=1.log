@@ -1,0 +1,87 @@
+[2026-09-09T14:59:42.126+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-09-09T14:59:43.175+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_quality.soda_test_staging manual__2026-09-09T14:59:26.510674+00:00 [queued]>
+[2026-09-09T14:59:43.290+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_quality.soda_test_staging manual__2026-09-09T14:59:26.510674+00:00 [queued]>
+[2026-09-09T14:59:43.330+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-09-09T14:59:46.793+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): soda_test_staging> on 2026-09-09 14:59:26.510674+00:00
+[2026-09-09T14:59:47.801+0000] {standard_task_runner.py:63} INFO - Started process 149 to run task
+[2026-09-09T14:59:48.411+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'data_quality', 'soda_test_staging', 'manual__2026-09-09T14:59:26.510674+00:00', '--job-id', '46', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmptub6f3fo']
+[2026-09-09T14:59:48.506+0000] {standard_task_runner.py:91} INFO - Job 46: Subtask soda_test_staging
+[2026-09-09T14:59:49.967+0000] {task_command.py:426} INFO - Running <TaskInstance: data_quality.soda_test_staging manual__2026-09-09T14:59:26.510674+00:00 [running]> on host 38df0d50f382
+[2026-09-09T14:59:50.413+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='data_quality' AIRFLOW_CTX_TASK_ID='soda_test_staging' AIRFLOW_CTX_EXECUTION_DATE='2026-09-09T14:59:26.510674+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-09-09T14:59:26.510674+00:00'
+[2026-09-09T14:59:50.420+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-09-09T14:59:50.431+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-09-09T14:59:50.434+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'soda scan -d pg_datasource -c /opt/airflow/include/soda/configuration.yml -v SCHEMA=staging /opt/airflow/include/soda/checks.yml']
+[2026-09-09T14:59:50.464+0000] {subprocess.py:86} INFO - Output:
+[2026-09-09T14:59:55.205+0000] {subprocess.py:93} INFO - [14:59:55] Soda Core 3.3.14
+[2026-09-09T14:59:55.468+0000] {subprocess.py:93} INFO - [14:59:55] Scan summary:
+[2026-09-09T14:59:55.473+0000] {subprocess.py:93} INFO - [14:59:55] 4/4 checks PASSED:
+[2026-09-09T14:59:55.480+0000] {subprocess.py:93} INFO - [14:59:55]     yt_api in pg_datasource
+[2026-09-09T14:59:55.482+0000] {subprocess.py:93} INFO - [14:59:55]       check for like_count greater than vid_views [PASSED]
+[2026-09-09T14:59:55.484+0000] {subprocess.py:93} INFO - [14:59:55]       check for Comments_count greater than vid_views [PASSED]
+[2026-09-09T14:59:55.485+0000] {subprocess.py:93} INFO - [14:59:55]       missing_count("Video_ID") = 0 [PASSED]
+[2026-09-09T14:59:55.487+0000] {subprocess.py:93} INFO - [14:59:55]       duplicate_count("Video_ID") = 0 [PASSED]
+[2026-09-09T14:59:55.488+0000] {subprocess.py:93} INFO - [14:59:55] All is good. No failures. No warnings. No errors.
+[2026-09-09T14:59:56.583+0000] {subprocess.py:93} INFO - Exception while exporting Span batch.
+[2026-09-09T14:59:56.671+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-09-09T14:59:56.728+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/connection.py", line 198, in _new_conn
+[2026-09-09T14:59:56.760+0000] {subprocess.py:93} INFO -     sock = connection.create_connection(
+[2026-09-09T14:59:56.777+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/util/connection.py", line 60, in create_connection
+[2026-09-09T14:59:56.808+0000] {subprocess.py:93} INFO -     for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+[2026-09-09T14:59:56.839+0000] {subprocess.py:93} INFO -   File "/usr/local/lib/python3.10/socket.py", line 955, in getaddrinfo
+[2026-09-09T14:59:56.855+0000] {subprocess.py:93} INFO -     for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+[2026-09-09T14:59:56.857+0000] {subprocess.py:93} INFO - socket.gaierror: [Errno -2] Name or service not known
+[2026-09-09T14:59:56.859+0000] {subprocess.py:93} INFO - 
+[2026-09-09T14:59:56.872+0000] {subprocess.py:93} INFO - The above exception was the direct cause of the following exception:
+[2026-09-09T14:59:56.873+0000] {subprocess.py:93} INFO - 
+[2026-09-09T14:59:56.889+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-09-09T14:59:56.912+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+[2026-09-09T14:59:56.921+0000] {subprocess.py:93} INFO -     response = self._make_request(
+[2026-09-09T14:59:56.936+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+[2026-09-09T14:59:56.950+0000] {subprocess.py:93} INFO -     raise new_e
+[2026-09-09T14:59:56.966+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+[2026-09-09T14:59:56.982+0000] {subprocess.py:93} INFO -     self._validate_conn(conn)
+[2026-09-09T14:59:56.998+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1099, in _validate_conn
+[2026-09-09T14:59:57.035+0000] {subprocess.py:93} INFO -     conn.connect()
+[2026-09-09T14:59:57.051+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/connection.py", line 616, in connect
+[2026-09-09T14:59:57.066+0000] {subprocess.py:93} INFO -     self.sock = sock = self._new_conn()
+[2026-09-09T14:59:57.078+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/connection.py", line 205, in _new_conn
+[2026-09-09T14:59:57.079+0000] {subprocess.py:93} INFO -     raise NameResolutionError(self.host, self, e) from e
+[2026-09-09T14:59:57.081+0000] {subprocess.py:93} INFO - urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x74fced518310>: Failed to resolve 'collect.soda.io' ([Errno -2] Name or service not known)
+[2026-09-09T14:59:57.083+0000] {subprocess.py:93} INFO - 
+[2026-09-09T14:59:57.094+0000] {subprocess.py:93} INFO - The above exception was the direct cause of the following exception:
+[2026-09-09T14:59:57.109+0000] {subprocess.py:93} INFO - 
+[2026-09-09T14:59:57.125+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-09-09T14:59:57.152+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/requests/adapters.py", line 486, in send
+[2026-09-09T14:59:57.157+0000] {subprocess.py:93} INFO -     resp = conn.urlopen(
+[2026-09-09T14:59:57.163+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+[2026-09-09T14:59:57.165+0000] {subprocess.py:93} INFO -     retries = retries.increment(
+[2026-09-09T14:59:57.167+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/urllib3/util/retry.py", line 515, in increment
+[2026-09-09T14:59:57.169+0000] {subprocess.py:93} INFO -     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+[2026-09-09T14:59:57.170+0000] {subprocess.py:93} INFO - urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='collect.soda.io', port=443): Max retries exceeded with url: /v1/traces (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x74fced518310>: Failed to resolve 'collect.soda.io' ([Errno -2] Name or service not known)"))
+[2026-09-09T14:59:57.176+0000] {subprocess.py:93} INFO - 
+[2026-09-09T14:59:57.179+0000] {subprocess.py:93} INFO - During handling of the above exception, another exception occurred:
+[2026-09-09T14:59:57.182+0000] {subprocess.py:93} INFO - 
+[2026-09-09T14:59:57.185+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2026-09-09T14:59:57.191+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/opentelemetry/sdk/trace/export/__init__.py", line 368, in _export_batch
+[2026-09-09T14:59:57.193+0000] {subprocess.py:93} INFO -     self.span_exporter.export(self.spans_list[:idx])  # type: ignore
+[2026-09-09T14:59:57.195+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/soda/telemetry/soda_exporter.py", line 54, in export
+[2026-09-09T14:59:57.196+0000] {subprocess.py:93} INFO -     return super().export(get_soda_spans(spans))
+[2026-09-09T14:59:57.198+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/opentelemetry/exporter/otlp/proto/http/trace_exporter/__init__.py", line 145, in export
+[2026-09-09T14:59:57.199+0000] {subprocess.py:93} INFO -     resp = self._export(serialized_data)
+[2026-09-09T14:59:57.201+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/opentelemetry/exporter/otlp/proto/http/trace_exporter/__init__.py", line 114, in _export
+[2026-09-09T14:59:57.202+0000] {subprocess.py:93} INFO -     return self._session.post(
+[2026-09-09T14:59:57.204+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/requests/sessions.py", line 637, in post
+[2026-09-09T14:59:57.206+0000] {subprocess.py:93} INFO -     return self.request("POST", url, data=data, json=json, **kwargs)
+[2026-09-09T14:59:57.210+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+[2026-09-09T14:59:57.212+0000] {subprocess.py:93} INFO -     resp = self.send(prep, **send_kwargs)
+[2026-09-09T14:59:57.215+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+[2026-09-09T14:59:57.217+0000] {subprocess.py:93} INFO -     r = adapter.send(request, **kwargs)
+[2026-09-09T14:59:57.219+0000] {subprocess.py:93} INFO -   File "/home/airflow/.local/lib/python3.10/site-packages/requests/adapters.py", line 519, in send
+[2026-09-09T14:59:57.221+0000] {subprocess.py:93} INFO -     raise ConnectionError(e, request=request)
+[2026-09-09T14:59:57.224+0000] {subprocess.py:93} INFO - requests.exceptions.ConnectionError: HTTPSConnectionPool(host='collect.soda.io', port=443): Max retries exceeded with url: /v1/traces (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x74fced518310>: Failed to resolve 'collect.soda.io' ([Errno -2] Name or service not known)"))
+[2026-09-09T14:59:57.226+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-09-09T14:59:57.232+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-09-09T14:59:57.302+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=data_quality, task_id=soda_test_staging, run_id=manual__2026-09-09T14:59:26.510674+00:00, execution_date=20260909T145926, start_date=20260909T145943, end_date=20260909T145957
+[2026-09-09T14:59:57.411+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-09-09T14:59:57.443+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-09-09T14:59:57.448+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
