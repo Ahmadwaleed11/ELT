@@ -1,4 +1,7 @@
 venve\
 __pycache__\
 .env
-logs\
+logs\logs/
+logs/
+__pycache__/
+*.pyc

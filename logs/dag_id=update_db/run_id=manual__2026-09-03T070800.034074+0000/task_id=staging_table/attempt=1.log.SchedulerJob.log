@@ -1,1 +1,0 @@
-[2026-09-03T07:08:17.111+0000] {scheduler_job_runner.py:843} ERROR - Executor reports task instance <TaskInstance: update_db.staging_table manual__2026-09-03T07:08:00.034074+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?
