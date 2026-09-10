@@ -22,7 +22,7 @@ jobs:
         uses: tj-actions/changed-files@v45
         with:
           files: |
-            dockerfile
+            Dockerfile
             requirements.txt
 
       - name: Set up Docker Buildx
