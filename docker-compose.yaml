@@ -47,11 +47,11 @@
 x-airflow-common:
   &airflow-common
   # Use custom image that builds on top of default airflow image (currently; Default: apache/airflow:2.9.2)
-  image: ${DOCKERHUB_NAMESPACE}/${DOCEKRHUB_REPOSITORY}:latest
+  # image: ${DOCKERHUB_NAMESPACE}/${DOCKERHUB_REPOSITORY}:latest
   # Build from local Dockerfile
-  # build:
-  #   context: .
-  #   dockerfile: dockerfile
+  build:
+    context: .
+    dockerfile: dockerfile
   # Use the .env file to read the connection params and variables - SWITCH THIS OFF WHEN USING GITHUB ACTIONS
   # env_file:
   #   - .env
